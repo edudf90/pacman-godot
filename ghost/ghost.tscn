@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://br6epl6er0yei"]
+
+[ext_resource type="Texture2D" uid="uid://tj8kbkngbpir" path="res://ghost/ghosts.png" id="1_2xhkv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqa8j"]
+atlas = ExtResource("1_2xhkv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqahk"]
+atlas = ExtResource("1_2xhkv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_msqbj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqa8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqahk")
+}],
+"loop": true,
+"name": &"floating",
+"speed": 5.0
+}]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_koere"]
+load_path = "res://.godot/imported/eyes.png-fb5a95fd516fff1cb89d8c991b6db6c8.ctex"
+
+[node name="Ghost" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_msqbj")
+animation = &"floating"
+autoplay = "floating"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = SubResource("CompressedTexture2D_koere")
+hframes = 5

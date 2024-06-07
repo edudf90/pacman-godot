@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://btymjjhvnvxb3"]
+
+[ext_resource type="Script" path="res://pacman/pacman.gd" id="1_2jrlk"]
+[ext_resource type="Texture2D" uid="uid://cpvac5quoh41c" path="res://pacman/pacman.png" id="1_6grl4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m3mv"]
+atlas = ExtResource("1_6grl4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1lu4f"]
+atlas = ExtResource("1_6grl4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4oli"]
+atlas = ExtResource("1_6grl4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5wac6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4m3mv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1lu4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4oli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1lu4f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Pacman" type="Node2D"]
+script = ExtResource("1_2jrlk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5wac6")
+autoplay = "default"
