@@ -74,5 +74,5 @@ position = Vector2(329, 408)
 position = Vector2(232, 192)
 
 [node name="Pacman" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_usmu0")]
-position = Vector2(257, 408)
+position = Vector2(256, 407)
 tilemap = NodePath("../TileMap")
