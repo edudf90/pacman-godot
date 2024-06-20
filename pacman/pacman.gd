@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var tilemap : TileMap
+@export var tile_map : TileMap
 
 const SPEED = 60.
 const SPRITE_RADIUS = 8.
@@ -9,8 +9,10 @@ var direction = Vector2i.ZERO
 var current_position : Vector2i
 var is_moving = false
 
+signal changed_tile
+
 func _ready():
-	current_position = tilemap.local_to_map(position)
+	current_position = tile_map.local_to_map(position)
 
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_up") && (
@@ -43,11 +45,12 @@ func _physics_process(delta):
 func move(delta):
 	var target_position = current_position + direction
 	is_moving = true
-	if tilemap.local_to_map(position - direction * SPRITE_RADIUS) == target_position:
+	if tile_map.local_to_map(position - direction * SPRITE_RADIUS) == target_position:
 		is_moving = false
 		current_position = target_position
 		target_position = current_position + direction
-	var local_target_position = tilemap.map_to_local(target_position)
+		changed_tile.emit(current_position, direction)
+	var local_target_position = tile_map.map_to_local(target_position)
 	if is_target_position_walkable(target_position):
 		var local_target = local_target_position + direction * SPRITE_RADIUS
 		position.x = move_toward(position.x, local_target.x, delta * SPEED)
@@ -58,5 +61,5 @@ func move(delta):
 		$AnimatedSprite2D.stop()
 
 func is_target_position_walkable(target_position):
-	var tile_data = tilemap.get_cell_tile_data(0, target_position)
+	var tile_data = tile_map.get_cell_tile_data(0, target_position)
 	return tile_data && tile_data.get_custom_data("walkable")

@@ -1,6 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://br6epl6er0yei"]
+[gd_scene load_steps=11 format=3 uid="uid://br6epl6er0yei"]
 
 [ext_resource type="Texture2D" uid="uid://tj8kbkngbpir" path="res://ghost/ghosts.png" id="1_2xhkv"]
+[ext_resource type="Script" path="res://ghost/ghost.gd" id="1_5p1mf"]
+[ext_resource type="Script" path="res://ghost/scatter_state.gd" id="3_714er"]
+[ext_resource type="Script" path="res://ghost/chase_state.gd" id="4_v5uys"]
+[ext_resource type="Script" path="res://ghost/eaten_state.gd" id="5_8dfks"]
+[ext_resource type="Script" path="res://ghost/frightened_state.gd" id="6_7e71h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqa8j"]
 atlas = ExtResource("1_2xhkv")
@@ -28,6 +33,7 @@ animations = [{
 load_path = "res://.godot/imported/eyes.png-fb5a95fd516fff1cb89d8c991b6db6c8.ctex"
 
 [node name="Ghost" type="Node2D"]
+script = ExtResource("1_5p1mf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_msqbj")
@@ -38,3 +44,15 @@ autoplay = "floating"
 position = Vector2(0, -9)
 texture = SubResource("CompressedTexture2D_koere")
 hframes = 5
+
+[node name="ScatterState" type="Node" parent="."]
+script = ExtResource("3_714er")
+
+[node name="ChaseState" type="Node" parent="."]
+script = ExtResource("4_v5uys")
+
+[node name="EatenState" type="Node" parent="."]
+script = ExtResource("5_8dfks")
+
+[node name="FrightenedState" type="Node" parent="."]
+script = ExtResource("6_7e71h")
